@@ -1,57 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <!-- Título y meta descripción orientados a departamentos en Bucerías -->
-  <title>Vista Bahía - Departamentos en Bucerías, Nayarit</title>
-  <meta name="description" content="Renta de departamentos con increíbles vistas en Bucerías, Nayarit, cerca de la playa y con todas las comodidades.">
-  
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <!-- Bootstrap Bundle (JS) -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-  ></script>
+  <!-- Título y meta descripción -->
+  <title>Condominio Vista Bahía - Departamentos Exclusivos</title>
+  <meta name="description" content="Descubre nuestros departamentos en Bucerías, La Cruz de Huacaxtle, Nuevo Vallarta, Punta de Mita, San Pancho y Sayulita. Fotografías de interiores y exteriores que destacan lo mejor de cada ubicación.">
 
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
   <!-- Fuente Google: Poppins -->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
+  <!-- GSAP y ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Bootstrap Bundle (JS) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- CSS personalizado con mejoras en diseño y animaciones -->
   <style>
-    /* ============================
-       FONT & BASIC STYLES
-       ============================ */
+    /* ====== ESTILOS BASE ====== */
     body {
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
-      background: #ffffff;
+      background: #f0f2f5; /* fondo neutro y claro */
       color: #333333;
       overflow-x: hidden;
     }
-    
     a {
       text-decoration: none;
       color: #333333;
       transition: color 0.3s ease;
     }
     a:hover {
-      color: #00A8B5;
+      color: #005792; /* acento azul profundo */
     }
-
-    /* ============================
-       HEADER / NAVBAR
-       ============================ */
+    
+    /* ====== HEADER / NAVBAR ====== */
     header {
       position: fixed;
       top: 0;
@@ -59,30 +50,70 @@
       background-color: #ffffff;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 1000;
+      transition: background-color 0.3s ease;
     }
-    .navbar-brand img {
-      max-height: 60px;
-      object-fit: contain;
+    .navbar-brand {
+      display: flex;
+      align-items: center;
     }
+    /* Animación del logo con SVG */
+    .logo-animation svg {
+      width: 100px;
+      height: auto;
+    }
+    /* Olas: dos capas con colores actualizados */
+    @keyframes wave1 {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(-15px); }
+      100% { transform: translateX(0); }
+    }
+    @keyframes wave2 {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(15px); }
+      100% { transform: translateX(0); }
+    }
+    .sea.sea1 {
+      animation: wave1 4s linear infinite;
+      fill: #005792; /* azul profundo */
+    }
+    .sea.sea2 {
+      animation: wave2 6s linear infinite;
+      fill: #0077b6; /* azul intermedio */
+      opacity: 0.8;
+    }
+    /* Sol: degradado dorado y efecto pulsante */
+    @keyframes sunPulsate {
+      0%, 100% { transform: scale(1) translateY(0px); }
+      50% { transform: scale(1.1) translateY(-5px); }
+    }
+    .sun {
+      animation: sunPulsate 5s ease-in-out infinite;
+    }
+    
     .navbar-nav .nav-link {
       margin-right: 1rem;
-      font-weight: 500;
+      font-weight: 600;
       color: #333333 !important;
+      position: relative;
     }
-    .navbar-toggler {
-      border: none;
-      outline: none;
+    .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #005792;
+      transition: width 0.3s ease;
     }
-    .navbar-toggler:focus {
-      outline: none;
-      box-shadow: none;
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link.active::after {
+      width: 100%;
     }
-
-    /* ============================
-       HERO SECTION
-       ============================ */
+    
+    /* ====== HERO SECTION ====== */
     .hero {
-      margin-top: 56px; /* Para que no quede debajo del navbar fijo */
+      margin-top: 56px;
       position: relative;
       width: 100%;
       height: 80vh;
@@ -92,8 +123,11 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
-      filter: brightness(0.8);
+      filter: brightness(0.7);
+      transition: transform 0.5s ease;
+    }
+    .hero:hover img {
+      transform: scale(1.05);
     }
     .hero-content {
       position: absolute;
@@ -103,61 +137,53 @@
       color: #ffffff;
       text-align: center;
       z-index: 2;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
     .hero-content h1 {
       font-size: 3rem;
       font-weight: 700;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
     }
     .hero-content p {
       font-size: 1.2rem;
       margin: 1rem 0;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     .btn-hero {
-      background-color: #00A8B5;
+      background-color: #005792;
       color: #ffffff;
       padding: 0.8rem 1.5rem;
       border: none;
       border-radius: 30px;
       font-weight: 600;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.3s ease;
     }
     .btn-hero:hover {
-      background-color: #00848F;
+      background-color: #003f5c;
+      transform: translateY(-3px);
     }
-
-    /* ============================
-       SECTION COMMON STYLES
-       ============================ */
+    
+    /* ====== SECCIONES COMUNES ====== */
     .section-title {
       font-size: 2rem;
       font-weight: 700;
       margin-bottom: 1.5rem;
       text-align: center;
-      color: #333333;
+      color: #005792;
+      position: relative;
+    }
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 4px;
+      background-color: #ffd166; /* acento dorado */
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
     }
     .section-container {
       padding: 3rem 1rem;
     }
-
-    /* ============================
-       GALERÍA Y TABS
-       ============================ */
-    .nav-tabs .nav-link {
-      color: #333333;
-      font-weight: 600;
-      border: none;
-      border-bottom: 3px solid transparent;
-      transition: border-color 0.3s;
-    }
-    .nav-tabs .nav-link.active {
-      border-color: #00A8B5;
-      color: #00A8B5;
-    }
-    .tab-content {
-      padding-top: 2rem;
-    }
+    
+    /* ====== GALERÍAS ====== */
     .gallery-slider-container {
       position: relative;
       overflow: hidden;
@@ -177,12 +203,14 @@
       height: 180px;
       border-radius: 8px;
       overflow: hidden;
-      position: relative;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #fff;
+      cursor: pointer;
     }
     .gallery-item:hover {
       transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
     .gallery-item img {
       width: 100%;
@@ -195,7 +223,7 @@
       transform: translateY(-50%);
       background: #ffffff;
       border: none;
-      color: #00A8B5;
+      color: #005792;
       font-size: 2rem;
       cursor: pointer;
       z-index: 5;
@@ -206,11 +234,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
     }
     .gallery-prev:hover, .gallery-next:hover {
-      background: #00A8B5;
+      background: #005792;
       color: #ffffff;
+      transform: scale(1.1);
     }
     .gallery-prev {
       left: -20px;
@@ -218,39 +247,36 @@
     .gallery-next {
       right: -20px;
     }
-
-    /* ============================
-       CONTACTO Y UBICACIÓN
-       ============================ */
-    .contact-buttons a {
-      display: inline-block;
-      margin: 0.5rem;
-      padding: 0.7rem 1.2rem;
-      background-color: #00A8B5;
-      color: #ffffff;
-      border-radius: 30px;
-      font-weight: 500;
-      transition: background 0.3s;
+    
+    /* ====== TABS PARA DEPARTAMENTOS ====== */
+    .nav-tabs .nav-link {
+      color: #333333;
+      font-weight: 600;
+      border: none;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s;
     }
-    .contact-buttons a:hover {
-      background-color: #00848F;
+    .nav-tabs .nav-link.active {
+      border-color: #005792;
+      color: #005792;
     }
-
+    
+    /* ====== FOOTER ====== */
     footer {
-      background-color: #333333;
+      background-color: #005792;
       color: #ffffff;
       text-align: center;
       padding: 1rem;
       margin-top: 2rem;
     }
     footer a {
-      color: #ffffff;
+      color: #ffd166;
       text-decoration: underline;
     }
     footer a:hover {
-      color: #00A8B5;
+      color: #ffffff;
     }
-
+    
     @media (max-width: 767px) {
       .hero {
         height: 60vh;
@@ -269,423 +295,308 @@
 </head>
 <body>
 
-  <!-- =======================
-       HEADER / NAVBAR
-       ======================= -->
+  <!-- ====== HEADER / NAVBAR ====== -->
   <header>
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-        <!-- Logo -->
+        <!-- Logo animado: Mar con dos olas y sol pulsante -->
         <a class="navbar-brand" href="#">
-          <img src="imagenes/logo.png" alt="Logo">
+          <div class="logo-animation">
+            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="sunGradient" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#FFD700" />
+                  <stop offset="100%" stop-color="#FFA500" />
+                </radialGradient>
+              </defs>
+              <!-- Olas -->
+              <path class="sea sea1" d="M0,60 Q50,80 100,60 T200,60 V100 H0 Z" />
+              <path class="sea sea2" d="M0,70 Q50,90 100,70 T200,70 V100 H0 Z" />
+              <!-- Sol -->
+              <circle class="sun" cx="150" cy="30" r="20" fill="url(#sunGradient)" />
+            </svg>
+          </div>
         </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#inicio">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#departamentos">Departamentos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#galeria">Galería</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#ubicacionInfo">Ubicación y Entorno</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contacto">Contacto</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#departamentos">Departamentos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#exterior">Exterior</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
 
-  <!-- =======================
-       HERO SECTION
-       ======================= -->
+  <!-- ====== HERO SECTION ====== -->
   <section id="inicio" class="hero">
-    <img src="imagenes/depa1.jpg" alt="Vista panorámica de los departamentos">
+    <img src="imagenes/Bucerías/San Pancho (10).webp" alt="Imagen de portada">
     <div class="hero-content">
-      <h1>Vista Bahía Departamentos</h1>
-      <p>Tu mejor opción de hospedaje en Bucerías, Nayarit</p>
-      <a href="https://wa.me/523221012160" target="_blank" class="btn-hero">Reserva Ahora</a>
+      <h1>Condominio Vista Bahía</h1>
+      <p>Departamentos exclusivos en ubicaciones únicas</p>
+      <a href="#contacto" class="btn-hero">Contáctanos</a>
     </div>
   </section>
 
-  <!-- =======================
-       SECCIÓN DE DEPARTAMENTOS
-       ======================= -->
+  <!-- ====== SECCIÓN DE DEPARTAMENTOS (Interiores) ====== -->
   <section id="departamentos" class="section-container">
-    <h2 class="section-title">Conoce Nuestros Departamentos</h2>
-    <div class="container">
-      <div class="row g-4">
-        <!-- Departamento A: Mapeado a Vista Bahía -->
-        <div class="col-12 col-md-4">
-          <div class="card">
-            <img src="imagenes/depa1.jpg" class="card-img-top" alt="Departamento 1">
-            <div class="card-body">
-              <h5 class="card-title">Departamento A</h5>
-              <p class="card-text">
-                Departamento con vista al mar, 2 recámaras, cocina equipada, A/C y balcón.
-              </p>
-              <a href="#galeria" class="btn btn-primary" style="background-color:#00A8B5; border:none;" onclick="goToGallery('Vista Bahía');">
-                Ver Más
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- Departamento B: Mapeado a Condominio 2 -->
-        <div class="col-12 col-md-4">
-          <div class="card">
-            <img src="imagenes/depa1.jpg" class="card-img-top" alt="Departamento 2">
-            <div class="card-body">
-              <h5 class="card-title">Departamento B</h5>
-              <p class="card-text">
-                Ideal para familias, con alberca compartida y a solo 5 minutos de la playa.
-              </p>
-              <a href="#galeria" class="btn btn-primary" style="background-color:#00A8B5; border:none;" onclick="goToGallery('Condominio 2');">
-                Ver Más
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- Departamento C: Mapeado a Condominio 3 -->
-        <div class="col-12 col-md-4">
-          <div class="card">
-            <img src="imagenes/depa1.jpg" class="card-img-top" alt="Departamento 3">
-            <div class="card-body">
-              <h5 class="card-title">Departamento C</h5>
-              <p class="card-text">
-                Perfecto para parejas, ambiente tranquilo y acceso a restaurantes cercanos.
-              </p>
-              <a href="#galeria" class="btn btn-primary" style="background-color:#00A8B5; border:none;" onclick="goToGallery('Condominio 3');">
-                Ver Más
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =======================
-       GALERÍA CON PESTAÑAS PARA CADA CONDOMINIO
-       ======================= -->
-  <section id="galeria" class="section-container" style="background-color:#F5F3ED;">
-    <h2 class="section-title">Galería de Condominios</h2>
-    <ul class="nav nav-tabs justify-content-center" id="condominioTabs" role="tablist">
+    <h2 class="section-title">Interiores de Nuestros Departamentos</h2>
+    <!-- Pestañas para cada departamento -->
+    <ul class="nav nav-tabs justify-content-center" id="departamentoTabs" role="tablist">
       <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="vista-bahia-tab" data-bs-toggle="tab" data-bs-target="#vista-bahia" type="button" role="tab" aria-controls="vista-bahia" aria-selected="true">
-          Vista Bahía
-        </button>
+        <button class="nav-link active" id="bucerias-tab" data-bs-toggle="tab" data-bs-target="#bucerias" type="button" role="tab" aria-controls="bucerias" aria-selected="true">Bucerías</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="condominio2-tab" data-bs-toggle="tab" data-bs-target="#condominio2" type="button" role="tab" aria-controls="condominio2" aria-selected="false">
-          Condominio 2
-        </button>
+        <button class="nav-link" id="cruz-huacaxtle-tab" data-bs-toggle="tab" data-bs-target="#cruz-huacaxtle" type="button" role="tab" aria-controls="cruz-huacaxtle" aria-selected="false">La Cruz de Huacaxtle</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="condominio3-tab" data-bs-toggle="tab" data-bs-target="#condominio3" type="button" role="tab" aria-controls="condominio3" aria-selected="false">
-          Condominio 3
-        </button>
+        <button class="nav-link" id="nuevo-vallarta-tab" data-bs-toggle="tab" data-bs-target="#nuevo-vallarta" type="button" role="tab" aria-controls="nuevo-vallarta" aria-selected="false">Nuevo Vallarta</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="punta-mita-tab" data-bs-toggle="tab" data-bs-target="#punta-mita" type="button" role="tab" aria-controls="punta-mita" aria-selected="false">Punta de Mita</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="san-pancho-tab" data-bs-toggle="tab" data-bs-target="#san-pancho" type="button" role="tab" aria-controls="san-pancho" aria-selected="false">San Pancho</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="sayulita-tab" data-bs-toggle="tab" data-bs-target="#sayulita" type="button" role="tab" aria-controls="sayulita" aria-selected="false">Sayulita</button>
       </li>
     </ul>
-    <div class="tab-content" id="condominioTabsContent">
-      <!-- Galería para Vista Bahía -->
-      <div class="tab-pane fade show active" id="vista-bahia" role="tabpanel" aria-labelledby="vista-bahia-tab">
-        <div class="gallery-slider-container">
-          <button class="gallery-prev" data-target="gallery-vista-bahia">&#10094;</button>
-          <div class="gallery-slider" id="gallery-vista-bahia">
-            <div class="gallery-item">
-              <img src="imagenes/depa1.jpg" alt="Vista Bahía 1">
+    <!-- Contenido de cada departamento -->
+    <div class="tab-content" id="departamentoTabsContent">
+      <!-- Departamento: Bucerías -->
+      <div class="tab-pane fade show active" id="bucerias" role="tabpanel" aria-labelledby="bucerias-tab">
+        <div class="container mt-4">
+          <h3>Interior</h3>
+          <div class="gallery-slider-container">
+            <button class="gallery-prev" data-target="gallery-bucerias-interior">&#10094;</button>
+            <div class="gallery-slider" id="gallery-bucerias-interior">
+              <div class="gallery-item"><img src="imagenes/Bucerías/bahia.webp" alt="Bucerías Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/Bucerias (2).webp" alt="Bucerías Interior 2"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/Bucerias (6).webp" alt="Bucerías Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/Bucerias (7).webp" alt="Bucerías Interior 2"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/U BUCERIAS-2.webp" alt="Bucerías Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/U BUCERIAS-4.webp" alt="Bucerías Interior 2"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/U BUCERIAS-6.webp" alt="Bucerías Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/Bucerias (4).webp" alt="Bucerías Interior 2"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/Bucerias (13).webp" alt="Bucerías Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/Bucerias (5).webp" alt="Bucerías Interior 2"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/Bucerias (9).webp" alt="Bucerías Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/Bucerias (8).webp" alt="Bucerías Interior 2"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/Bucerias (12).webp" alt="Bucerías Interior 2"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/Bucerias (16).webp" alt="Bucerías Interior 2"></div>
+              <div class="gallery-item"><img src="imagenes/Bucerías/renta.webp" alt="Bucerías Interior 2"></div>
             </div>
-            <div class="gallery-item">
-              <img src="imagenes/renta departamentos bucerias.jpg" alt="Vista Bahía 2">
-            </div>
-            <div class="gallery-item">
-              <img src="imagenes/departamentos en renta bahia de banderas nayarit.jpg" alt="Vista Bahía 3">
-            </div>
-            <div class="gallery-item">
-              <img src="imagenes/departamentos en renta bahia de banderas nayarit.jpg" alt="Vista Bahía 4">
-            </div>
+            <button class="gallery-next" data-target="gallery-bucerias-interior">&#10095;</button>
           </div>
-          <button class="gallery-next" data-target="gallery-vista-bahia">&#10095;</button>
         </div>
       </div>
-      <!-- Galería para Condominio 2 -->
-      <div class="tab-pane fade" id="condominio2" role="tabpanel" aria-labelledby="condominio2-tab">
-        <div class="gallery-slider-container">
-          <button class="gallery-prev" data-target="gallery-condo2">&#10094;</button>
-          <div class="gallery-slider" id="gallery-condo2">
-            <div class="gallery-item">
-              <img src="imagenes/condo2_1.jpg" alt="Condominio 2 - Imagen 1">
+      <!-- Departamento: La Cruz de Huacaxtle -->
+      <div class="tab-pane fade" id="cruz-huacaxtle" role="tabpanel" aria-labelledby="cruz-huacaxtle-tab">
+        <div class="container mt-4">
+          <h3>Interior</h3>
+          <div class="gallery-slider-container">
+            <button class="gallery-prev" data-target="gallery-huacaxtle-interior">&#10094;</button>
+            <div class="gallery-slider" id="gallery-huacaxtle-interior">
+              <div class="gallery-item"><img src="imagenes/La Cruz de Huanacaxtle/La Cruz de Huanacaxtle (2)_resultado676.webp" alt="Huacaxtle Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/La Cruz de Huanacaxtle/La Cruz de Huanacaxtle (8)_resultado787.webp" alt="Huacaxtle Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/La Cruz de Huanacaxtle/La Cruz de Huanacaxtle (2)_resultado676.webp" alt="Huacaxtle Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/La Cruz de Huanacaxtle/La Cruz de Huanacaxtle (3)_resultado1,146.webp" alt="Huacaxtle Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/La Cruz de Huanacaxtle/La Cruz de Huanacaxtle (1)_resultado920.webp" alt="Huacaxtle Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/La Cruz de Huanacaxtle/La Cruz de Huanacaxtle (4)_resultado751.webp" alt="Huacaxtle Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/La Cruz de Huanacaxtle/La Cruz de Huanacaxtle (5)_resultado684.webp" alt="Huacaxtle Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/La Cruz de Huanacaxtle/La Cruz de Huanacaxtle (7)_resultado683.webp" alt="Huacaxtle Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/La Cruz de Huanacaxtle/La Cruz de Huanacaxtle (6)_resultado736.webp" alt="Huacaxtle Interior 1"></div>
             </div>
-            <div class="gallery-item">
-              <img src="imagenes/condo2_2.jpg" alt="Condominio 2 - Imagen 2">
-            </div>
-            <div class="gallery-item">
-              <img src="imagenes/condo2_3.jpg" alt="Condominio 2 - Imagen 3">
-            </div>
+            <button class="gallery-next" data-target="gallery-huacaxtle-interior">&#10095;</button>
           </div>
-          <button class="gallery-next" data-target="gallery-condo2">&#10095;</button>
         </div>
       </div>
-      <!-- Galería para Condominio 3 -->
-      <div class="tab-pane fade" id="condominio3" role="tabpanel" aria-labelledby="condominio3-tab">
-        <div class="gallery-slider-container">
-          <button class="gallery-prev" data-target="gallery-condo3">&#10094;</button>
-          <div class="gallery-slider" id="gallery-condo3">
-            <div class="gallery-item">
-              <img src="imagenes/condo3_1.jpg" alt="Condominio 3 - Imagen 1">
+      <!-- Departamento: Nuevo Vallarta -->
+      <div class="tab-pane fade" id="nuevo-vallarta" role="tabpanel" aria-labelledby="nuevo-vallarta-tab">
+        <div class="container mt-4">
+          <h3>Interior</h3>
+          <div class="gallery-slider-container">
+            <button class="gallery-prev" data-target="gallery-nuevo-vallarta-interior">&#10094;</button>
+            <div class="gallery-slider" id="gallery-nuevo-vallarta-interior">
+              <div class="gallery-item"><img src="imagenes/Nuevo Vallarta/_NIK7225_resultado617.webp" alt="Nuevo Vallarta Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Nuevo Vallarta/_NIK7226_resultado514.webp" alt="Nuevo Vallarta Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Nuevo Vallarta/_NIK7227_resultado652.webp" alt="Nuevo Vallarta Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Nuevo Vallarta/_NIK7228_resultado686.webp" alt="Nuevo Vallarta Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Nuevo Vallarta/_NIK7232_resultado542.webp" alt="Nuevo Vallarta Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Nuevo Vallarta/_NIK7233_resultado564.webp" alt="Nuevo Vallarta Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Nuevo Vallarta/U NUEVO VALLARTA-09_resultado2,459.webp" alt="Nuevo Vallarta Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Nuevo Vallarta/_NIK7231_resultado730.webp" alt="Nuevo Vallarta Interior 1"></div>
             </div>
-            <div class="gallery-item">
-              <img src="imagenes/condo3_2.jpg" alt="Condominio 3 - Imagen 2">
-            </div>
-            <div class="gallery-item">
-              <img src="imagenes/condo3_3.jpg" alt="Condominio 3 - Imagen 3">
-            </div>
+            <button class="gallery-next" data-target="gallery-nuevo-vallarta-interior">&#10095;</button>
           </div>
-          <button class="gallery-next" data-target="gallery-condo3">&#10095;</button>
+        </div>
+      </div>
+      <!-- Departamento: Punta de Mita -->
+      <div class="tab-pane fade" id="punta-mita" role="tabpanel" aria-labelledby="punta-mita-tab">
+        <div class="container mt-4">
+          <h3>Interior</h3>
+          <div class="gallery-slider-container">
+            <button class="gallery-prev" data-target="gallery-punta-mita-interior">&#10094;</button>
+            <div class="gallery-slider" id="gallery-punta-mita-interior">
+              <div class="gallery-item"><img src="imagenes/Punta de Mita/U Punta de Mita-4_resultado3,294.webp" alt="Punta de Mita Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Punta de Mita/Vista Bahia- Punta de Mita01_resultado16,479.webp" alt="Punta de Mita Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Punta de Mita/U Punta de Mita-8_resultado3,409.webp" alt="Punta de Mita Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Punta de Mita/Vista Bahia- Punta de Mita04_resultado16,434.webp" alt="Punta de Mita Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Punta de Mita/Vista Bahia- Punta de Mita09_resultado14,738.webp" alt="Punta de Mita Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Punta de Mita/Vista Bahia- Punta de Mita07_resultado16,029.webp" alt="Punta de Mita Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Punta de Mita/Vista Bahia- Punta de Mita03_resultado13,135.webp" alt="Punta de Mita Interior 1"></div>
+            </div>
+            <button class="gallery-next" data-target="gallery-punta-mita-interior">&#10095;</button>
+          </div>
+        </div>
+      </div>
+      <!-- Departamento: San Pancho -->
+      <div class="tab-pane fade" id="san-pancho" role="tabpanel" aria-labelledby="san-pancho-tab">
+        <div class="container mt-4">
+          <h3>Interior</h3>
+          <div class="gallery-slider-container">
+            <button class="gallery-prev" data-target="gallery-san-pancho-interior">&#10094;</button>
+            <div class="gallery-slider" id="gallery-san-pancho-interior">
+              <div class="gallery-item"><img src="imagenes/San Pancho/San Pancho (6)_resultado2,847.webp" alt="San Pancho Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/San Pancho/San Pancho (8)_resultado3,204.webp" alt="San Pancho Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/San Pancho/San Pancho (9)_resultado2,131.webp" alt="San Pancho Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/San Pancho/San Pancho (3)_resultado1,617.webp" alt="San Pancho Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/San Pancho/San Pancho (4)_resultado1,492.webp" alt="San Pancho Interior 1"></div>
+            </div>
+            <button class="gallery-next" data-target="gallery-san-pancho-interior">&#10095;</button>
+          </div>
+        </div>
+      </div>
+      <!-- Departamento: Sayulita -->
+      <div class="tab-pane fade" id="sayulita" role="tabpanel" aria-labelledby="sayulita-tab">
+        <div class="container mt-4">
+          <h3>Interior</h3>
+          <div class="gallery-slider-container">
+            <button class="gallery-prev" data-target="gallery-sayulita-interior">&#10094;</button>
+            <div class="gallery-slider" id="gallery-sayulita-interior">
+              <div class="gallery-item"><img src="imagenes/Sayulita/Vista Bahia- Sayulita (7)_resultado801.webp" alt="Sayulita Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Sayulita/Vista Bahia- Sayulita (1)_resultado771.webp" alt="Sayulita Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Sayulita/Vista Bahia- Sayulita (2)_resultado655.webp" alt="Sayulita Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Sayulita/U SAYULITA-3_resultado2,652.webp" alt="Sayulita Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Sayulita/Vista Bahia- Sayulita (4)_resultado520.webp" alt="Sayulita Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Sayulita/Vista Bahia- Sayulita (5)_resultado683.webp" alt="Sayulita Interior 1"></div>
+              <div class="gallery-item"><img src="imagenes/Sayulita/Vista Bahia- Sayulita (3)_resultado923.webp" alt="Sayulita Interior 1"></div>
+            </div>
+            <button class="gallery-next" data-target="gallery-sayulita-interior">&#10095;</button>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- =======================
-       SECCIÓN DINÁMICA: UBICACIÓN, VISITA Y ENTORNO
-       ======================= -->
-  <section id="ubicacionInfo" class="section-container">
-    <!-- El contenido se actualizará dinámicamente según la pestaña activa de la galería -->
+  <!-- ====== SECCIÓN DE GALERÍA EXTERIOR (común a todos los departamentos) ====== -->
+  <section id="exterior" class="section-container" style="background-color:#F5F3ED;">
+    <h2 class="section-title">Galería Exterior</h2>
+    <div class="container">
+      <div class="gallery-slider-container">
+        <button class="gallery-prev" data-target="gallery-exterior">&#10094;</button>
+        <div class="gallery-slider" id="gallery-exterior">
+          <div class="gallery-item"><img src="imagenes/Exteriores/eXTERIORES (1)_resultado975.webp" alt="Exterior 1"></div>
+          <div class="gallery-item"><img src="imagenes/Exteriores/Exteriores (11)_resultado673.webp" alt="Exterior 1"></div>
+          <div class="gallery-item"><img src="imagenes/Exteriores/Exteriores (8)_resultado1,117.webp" alt="Exterior 1"></div>
+          <div class="gallery-item"><img src="imagenes/Exteriores/Exteriores (9)_resultado1,135.webp" alt="Exterior 1"></div>
+          <div class="gallery-item"><img src="imagenes/Exteriores/Exteriores (10)_resultado533.webp" alt="Exterior 1"></div>
+          <div class="gallery-item"><img src="imagenes/Exteriores/Exteriores (12)_resultado823.webp" alt="Exterior 1"></div>
+          <div class="gallery-item"><img src="imagenes/Exteriores/U EXTERIORES-04_resultado5,269.webp" alt="Exterior 1"></div>
+        </div>
+        <button class="gallery-next" data-target="gallery-exterior">&#10095;</button>
+      </div>
+      <a href="https://www.google.com/maps" target="_blank" class="btn btn-secondary mt-3">Ver en Google Maps</a>
+    </div>
   </section>
 
-  <!-- =======================
-       CONTACTO
-       ======================= -->
+  <!-- ====== CONTACTO ====== -->
   <section id="contacto" class="section-container">
     <h2 class="section-title">Contacto</h2>
-    <div class="row g-4">
-      <!-- Columna 1: Información y botones -->
-      <div class="col-12 col-md-6">
-        <p>¿Tienes dudas o quieres reservar? Contáctanos por WhatsApp o visita nuestras redes sociales.</p>
-        <div class="contact-buttons">
-          <a href="https://wa.me/523221012160" target="_blank">WhatsApp</a>
-          <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-6">
+          <p>¿Tienes dudas o quieres reservar? Contáctanos por WhatsApp o síguenos en nuestras redes sociales.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="https://wa.me/523221012160" target="_blank" class="btn btn-primary" style="background-color:#005792; border:none;">WhatsApp</a>
+            <a href="https://www.facebook.com/" target="_blank" class="btn btn-primary" style="background-color:#005792; border:none;">Facebook</a>
+          </div>
         </div>
-      </div>
-      <!-- Columna 2: Ubicación -->
-      <div class="col-12 col-md-6">
-        <p><strong>Ubicación:</strong> Bucerías, Nayarit, México.</p>
-        <a href="https://www.google.com/maps" target="_blank" class="btn btn-secondary">
-          Ver en Google Maps
-        </a>
+        <div class="col-12 col-md-6">
+          <p><strong>Ubicación:</strong> Bucerías, Nayarit, México.</p>
+          <a href="https://www.google.com/maps" target="_blank" class="btn btn-secondary">Ver en Google Maps</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- =======================
-       FOOTER
-       ======================= -->
+  <!-- ====== FOOTER ====== -->
   <footer>
-    <p>
-      © 2025 Vista Bahía Departamentos - Todos los derechos reservados |
-      <a href="#">Política de privacidad</a>
-    </p>
+    <p>© 2025 Condominio Vista Bahía - Todos los derechos reservados | <a href="#">Política de privacidad</a></p>
   </footer>
 
-  <!-- =======================
-       SCRIPTS
-       ======================= -->
+  <!-- Modal para Lightbox -->
+  <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-body p-0">
+          <img src="" alt="Imagen expandida" id="lightboxImage" class="img-fluid w-100">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== SCRIPTS ====== -->
   <script>
-    // GSAP Animations (opcional)
-    gsap.to(".hero-content h1", {
-      opacity: 1,
-      y: -10,
-      duration: 1.5,
-      delay: 0.5,
-      ease: "power3.out"
-    });
-    gsap.to(".hero-content p", {
-      opacity: 1,
-      y: -5,
-      duration: 1.5,
-      delay: 1,
-      ease: "power3.out"
-    });
-    gsap.from(".btn-hero", {
-      opacity: 0,
-      scale: 0.8,
-      duration: 1,
-      delay: 1.5,
-      ease: "back.out(1.7)"
-    });
+    // Registrar el plugin ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
 
-    // Navbar scroll effect (opcional)
-    window.addEventListener("scroll", function () {
-      let header = document.querySelector("header");
-      if (window.scrollY > 50) {
-        gsap.to(header, {
-          backgroundColor: "#ffffff",
-          boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-          duration: 0.5
-        });
-      } else {
-        gsap.to(header, {
-          backgroundColor: "#ffffff",
-          boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-          duration: 0.5
-        });
-      }
-    });
+    // Animación del hero
+    gsap.from(".hero-content h1", { opacity: 0, y: 50, duration: 1.5, ease: "power3.out" });
+    gsap.from(".hero-content p", { opacity: 0, y: 50, duration: 1.5, delay: 0.3, ease: "power3.out" });
+    gsap.from(".btn-hero", { opacity: 0, scale: 0.8, duration: 1, delay: 0.6, ease: "back.out(1.7)" });
 
-    // Función para el slider de las galerías existentes
+    // Aparición de secciones al hacer scroll
+    gsap.utils.toArray('.section-container').forEach(section => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%"
+        }
+      });
+    });
+    
+    // Función para el slider de galerías
     function initGallerySlider(targetId, btnPrev, btnNext) {
       const slider = document.getElementById(targetId);
-      btnNext.addEventListener('click', () => {
-        slider.scrollBy({ left: 300, behavior: 'smooth' });
-      });
-      btnPrev.addEventListener('click', () => {
-        slider.scrollBy({ left: -300, behavior: 'smooth' });
-      });
+      btnNext.addEventListener('click', () => slider.scrollBy({ left: 300, behavior: 'smooth' }));
+      btnPrev.addEventListener('click', () => slider.scrollBy({ left: -300, behavior: 'smooth' }));
     }
-
+    
     document.querySelectorAll('.gallery-prev').forEach(btn => {
       const targetId = btn.getAttribute('data-target');
       const btnNext = document.querySelector(`.gallery-next[data-target="${targetId}"]`);
       initGallerySlider(targetId, btn, btnNext);
     });
-
-    // Función para inicializar sliders en contenido dinámico (sección Ubicación y Entorno)
-    function initDynamicGallerySliders(container) {
-      container.querySelectorAll('.gallery-prev').forEach(btn => {
-        const targetId = btn.getAttribute('data-target');
-        const btnNext = container.querySelector(`.gallery-next[data-target="${targetId}"]`);
-        initGallerySlider(targetId, btn, btnNext);
+    
+    // Función para mostrar la imagen en un modal (lightbox)
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+      img.addEventListener('click', function() {
+        const src = this.getAttribute('src');
+        document.getElementById('lightboxImage').setAttribute('src', src);
+        const lightboxModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+        lightboxModal.show();
       });
-    }
-
-    // Función para actualizar el contenido de la sección "ubicacionInfo" según el condominio activo
-    function updateUbicacionInfo() {
-      const activeTab = document.querySelector('#condominioTabs button.nav-link.active');
-      const infoElement = document.getElementById('ubicacionInfo');
-
-      // Objeto con la información para cada condominio, incluyendo ubicación, qué visitar, entorno y galería de entorno
-      const locationData = {
-        'Vista Bahía': {
-          direccion: "Av. Playa Dorada #123, Bucerías, Nayarit, México.",
-          visita: "Cerca de Vista Bahía podrás disfrutar de la hermosa Playa Dorada, recorrer el pintoresco Mercado de Artesanías y degustar la gastronomía local en el corredor gastronómico.",
-          entorno: "En el entorno de Vista Bahía encontrarás restaurantes frente al mar, tiendas de artesanías y actividades acuáticas.",
-          entornoGallery: [
-            "imagenes/renta departamentos.jpg",
-            "imagenes/renta depas nayarit.png",
-            "imagenes/departamentos en renta.jpg"
-          ]
-        },
-        'Condominio 2': {
-          direccion: "Calle de la Arena #456, Bucerías, Nayarit, México.",
-          visita: "En Condominio 2, visita el encantador Parque Central, explora boutiques locales y relájate en las áreas verdes de la zona.",
-          entorno: "El entorno de Condominio 2 te ofrece parques, cafés y un ambiente relajado ideal para pasear.",
-          entornoGallery: [
-            "imagenes/entorno_condo2_1.jpg",
-            "imagenes/entorno_condo2_2.jpg",
-            "imagenes/entorno_condo2_3.jpg"
-          ]
-        },
-        'Condominio 3': {
-          direccion: "Blvd. Marítimo #789, Bucerías, Nayarit, México.",
-          visita: "Descubre en Condominio 3 una vibrante zona de restaurantes, tiendas exclusivas y espacios culturales ideales para pasar un día en familia.",
-          entorno: "En el entorno de Condominio 3 encontrarás centros culturales, galerías de arte y una activa vida nocturna.",
-          entornoGallery: [
-            "imagenes/entorno_condo3_1.jpg",
-            "imagenes/entorno_condo3_2.jpg",
-            "imagenes/entorno_condo3_3.jpg"
-          ]
-        }
-      };
-
-      if (activeTab) {
-        // Se obtiene el nombre del condominio (el texto del botón)
-        const condominio = activeTab.textContent.trim();
-        const data = locationData[condominio];
-        if (data) {
-          // Creamos un identificador único (sin espacios) para la galería de entorno
-          const entornoGalleryId = "gallery-entorno-" + condominio.replace(/\s/g, '').toLowerCase();
-          
-          infoElement.innerHTML = `
-            <h2 class="section-title">${condominio}</h2>
-            <div class="container">
-              <h3 class="mt-4">Ubicación</h3>
-              <p><strong>Dirección:</strong> ${data.direccion}</p>
-              <h3 class="mt-4">Qué visitar</h3>
-              <p>${data.visita}</p>
-              <h3 class="mt-4">Entorno</h3>
-              <p>${data.entorno}</p>
-              <div class="gallery-slider-container mt-3">
-                <button class="gallery-prev" data-target="${entornoGalleryId}">&#10094;</button>
-                <div class="gallery-slider" id="${entornoGalleryId}">
-                  ${data.entornoGallery.map(img => `<div class="gallery-item"><img src="${img}" alt="Entorno ${condominio}"></div>`).join('')}
-                </div>
-                <button class="gallery-next" data-target="${entornoGalleryId}">&#10095;</button>
-              </div>
-              <a href="https://www.google.com/maps" target="_blank" class="btn btn-secondary mt-3">Ver en Google Maps</a>
-            </div>
-          `;
-
-          // Inicializamos los controles del slider en la sección dinámica
-          initDynamicGallerySliders(infoElement);
-        }
-      }
-    }
-
-    // Listener para detectar el cambio de pestaña en la galería (evento de Bootstrap)
-    const galleryTabs = document.querySelectorAll('#condominioTabs button.nav-link');
-    galleryTabs.forEach(tab => {
-      tab.addEventListener('shown.bs.tab', updateUbicacionInfo);
     });
-
-    // Actualiza la información al cargar la página
-    document.addEventListener("DOMContentLoaded", updateUbicacionInfo);
-
-    // Función para cambiar a la galería del departamento seleccionado y hacer scroll a ella
-    function goToGallery(departamento) {
-      let tabId = "";
-      switch(departamento) {
-        case 'Vista Bahía':
-          tabId = "vista-bahia-tab";
-          break;
-        case 'Condominio 2':
-          tabId = "condominio2-tab";
-          break;
-        case 'Condominio 3':
-          tabId = "condominio3-tab";
-          break;
-        default:
-          tabId = "vista-bahia-tab";
-      }
-      // Activa la pestaña correspondiente
-      const tabEl = document.getElementById(tabId);
-      if(tabEl) {
-        // Utilizamos la API de Bootstrap para mostrar la pestaña
-        const tab = new bootstrap.Tab(tabEl);
-        tab.show();
-      }
-      // Hacemos scroll hasta la sección de la galería
-      document.getElementById('galeria').scrollIntoView({ behavior: 'smooth' });
-    }
   </script>
-
 </body>
 </html>
